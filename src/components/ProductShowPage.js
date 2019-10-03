@@ -54,9 +54,7 @@ function ProductShowPage(props) {
       <ProductDetails 
         myData={myProduct}
       /> <br />
-      <ReviewList 
-        myData={myProduct}
-      />
+      <ReviewList myData={myProduct}/>
     </div>
   )
 }

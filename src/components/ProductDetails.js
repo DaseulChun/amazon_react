@@ -2,8 +2,8 @@ import React from "react";
 
 // View Product Component
 function ProductDetails(props) {
-  console.log("This is props in ProductDetails ==>", props)
-  console.log("THIS IS My DATA in ProductDetails ==>", props.myData)
+  // console.log("This is props in ProductDetails ==>", props)
+  // console.log("THIS IS My DATA in ProductDetails ==>", props.myData)
   return(
     <div>
       <h2>{props.myData.title}</h2>

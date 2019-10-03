@@ -1,41 +1,21 @@
 import React from "react";
+import ReviewDetails from "./ReviewDetails";
 
-// ReviewList Component
-function ReviewList(props) {
-  console.log("THIS IS PROPS in ReviewList ==> ", props.myData.reviews.map(r => console.log(r.rating)))
-  const allReviews = props.myData.reviews.map(review =>{
-    return (
-      <div>
-      <div>Review List</div><br />
-      <p>Rating: {review.rating}</p>
-      <p>{review.body}</p>
-      <p>
-        <small>By: {review.reviewer.full_name} - Created </small>
-      </p>
-    </div>
-    )
-  })
+function ReviewList(props){
   return (
-    <div>
-      {allReviews}
-    </div>
+      <ul>
+        {props.myData.reviews.map(review => (
+            <li className="ui segment" key={review.id}>
+              <ReviewDetails 
+                rating={review.rating}
+                body={review.body}
+                reviewer_fullname={review.reviewer.full_name}
+                created_at={new Date(review.created_at)}
+              />
+            </li>
+        ))}
+      </ul>
   )
-
-
-  // const reviews= props.myData.reviews;
-  // console.log("reviews:" , reviews);
-  // return(
-  //   <div>
-  //     <div>Review List</div><br />
-  //     {/* {reviews.forEach(review => {
-  //       <p>{review.rating}</p>
-  //     })} */}
-  //     {/* <p>{props.body}</p> */}
-  //     <p>
-  //       {/* <small>By: {props.reviewer.full_name} - Created </small> */}
-  //     </p>
-  //   </div>
-  // )
 }
 
 export default ReviewList;
