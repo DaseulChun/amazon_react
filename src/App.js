@@ -1,10 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
+import ProductShowPage from './components/ProductShowPage';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="ui container">
+      <ProductShowPage />
     </div>
   );
 }
