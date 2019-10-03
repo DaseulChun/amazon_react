@@ -1,4 +1,4 @@
-export default [
+export default 
   {
     "id": 117,
     "title": "Tophat jones",
@@ -49,4 +49,3 @@ export default [
       }
     ]
   }
-]

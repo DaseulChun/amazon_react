@@ -2,9 +2,10 @@ import React from "react";
 import ReviewDetails from "./ReviewDetails";
 
 function ReviewList(props){
+  console.log(props);
   return (
       <ul>
-        {props.myData.reviews.map(review => (
+        {props.reviews.map(review => (
             <li className="ui segment" key={review.id}>
               <ReviewDetails 
                 rating={review.rating}
