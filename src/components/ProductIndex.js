@@ -23,20 +23,25 @@ class ProductIndex extends Component {
     });
   }
   createProduct(params) {
+    // Product.create(params).then(product => {
+    //   Product.one(product.id).then(product => {
+    //     this.setState(state => {
+    //       return {
+    //         products: [
+    //           {
+    //             ...product,
+    //             ...state.products
+    //           }
+    //         ]
+    //       }
+    //     })
+    //   })
+    // })
+    console.log('this.props before histroy>>>', this.props)
+    // debugger;
     Product.create(params).then(product => {
-      Product.one(product.id).then(product => {
-        this.setState(state => {
-          return {
-            products: [
-              {
-                ...product,
-                ...state.products
-              }
-            ]
-          }
-        })
-      })
-    })
+      this.props.history.push(`/products/${product.id}`);
+    });
   }
   deleteProduct(id) {
     this.setState((state, props) => {

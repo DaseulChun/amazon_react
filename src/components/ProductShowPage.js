@@ -24,7 +24,7 @@ class ProductShowPage extends Component {
     //     isLoading: false
     //   });
     // });
-    // console.log('this.props before match>>>>', this.props);
+    // console.log('this.props.history before match>>>>', this.props.histroy);
     Product.one(this.props.match.params.id).then(product => {
       this.setState({
         product: product,

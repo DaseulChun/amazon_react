@@ -8,7 +8,7 @@ function ProductForm(props) {
 
     const newProduct = {
       title: formData.get("title"),
-      body: formData.get("description"),
+      description: formData.get("description"),
       price: formData.get("price")
     };
 
