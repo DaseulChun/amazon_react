@@ -2,7 +2,7 @@ import React from "react";
 
 // View Product Component
 function ProductDetails(props) {
-  console.log("This is props in ProductDetails ==>", props)
+  // console.log("This is props in ProductDetails ==>", props)
   return(
     <div>
       <h2>{props.title}</h2>
