@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductShowPage from './components/ProductShowPage';
 import ProductIndex from './components/ProductIndex';
+import Navbar from "./components/Navbar";
 import './App.css';
 
 class App extends React.Component {
@@ -9,6 +10,7 @@ class App extends React.Component {
     return (
       <Router>
         <div className="ui container">
+          <Navbar />
           <Switch>
             <Route path="/" exact component={ProductIndex} />
             <Route path="/products" exact component={ProductIndex} />
