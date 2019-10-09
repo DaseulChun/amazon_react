@@ -18,7 +18,14 @@ class ProductShowPage extends Component {
 
   componentDidMount() {
     // Currently hard-coded the productId
-    Product.one(450).then((product) => {
+    // Product.one(450).then((product) => {
+    //   this.setState({
+    //     product: product,
+    //     isLoading: false
+    //   });
+    // });
+    // console.log('this.props before match>>>>', this.props);
+    Product.one(this.props.match.params.id).then(product => {
       this.setState({
         product: product,
         isLoading: false
@@ -45,7 +52,7 @@ class ProductShowPage extends Component {
         <h1>Product Show Page</h1>
         <ProductDetails {...this.state.product} /> <br />
         <ReviewList onReviewDelete={this.deleteReview} reviews={this.state.product.reviews} />
-        {console.log(this.state.product)}
+        {/* {console.log(this.state.product)} */}
       </div>
     )
   }

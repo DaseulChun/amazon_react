@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
-import products from '../data/products';
+import { Link } from "react-router-dom";
+// import products from '../data/products';
 import ProductForm from "./ProductForm";
+import Spinner from "./Spinner";
 import { Product } from '../requests';
 
 class ProductIndex extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [ ...products ]
+      products: [],
+      isLoading: true
     }
     this.createProduct = this.createProduct.bind(this);
   }
-  deleteProduct(id) {
-    this.setState((state, props) => {
-      return {
-        products: state.products.filter((p) => p.id !== id)
-      }
-    })
+  componentDidMount() {
+    Product.all().then(products => {
+      this.setState({
+        products: products,
+        isLoading: false
+      });
+    });
   }
   createProduct(params) {
     Product.create(params).then(product => {
@@ -34,7 +38,17 @@ class ProductIndex extends Component {
       })
     })
   }
+  deleteProduct(id) {
+    this.setState((state, props) => {
+      return {
+        products: state.products.filter((p) => p.id !== id)
+      }
+    })
+  }
   render() {
+    if (!this.state.products) {
+      return <Spinner />;
+    }
     return (
       <main className="ProductIndex">
         <h1>Products Index</h1>
@@ -43,7 +57,7 @@ class ProductIndex extends Component {
           {this.state.products.map((product, index) => (
             <li key={index}>
               <p style={{ padding: "1em"}}>
-                {product.title} | ${product.price}.00
+                <Link to={`/products/${product.id}`}>{product.title} | ${product.price}.00</Link>
                 <button
                   className="ui right floated red button"
                   onClick={() => this.deleteProduct(product.id)}>
