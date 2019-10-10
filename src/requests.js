@@ -53,7 +53,34 @@ const Session = {
       },
       body: JSON.stringify(params)
     }).then(res => res.json());
+  },
+  destroy() {
+    return fetch(`${BASE_URL}/session`, {
+      method: "DELETE",
+      credentials: "include"
+    }).then(res => res.json());
   }
 }
 
-export { Product, Session };
+// User module
+const User = {
+  current() {
+    return fetch(`${BASE_URL}/users/current`, {
+      method: "GET",
+      credentials: "include"
+    }).then(res => res.json());
+  },
+  create(params) {
+    // params is going to look like
+    // { email: <some-email>, password: <some-password>, first_name: ....}
+    return fetch(`${BASE_URL}/users`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(params)
+    }).then(res => res.json());
+  }
+};
+export { Product, Session, User };
