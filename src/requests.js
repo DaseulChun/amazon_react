@@ -35,7 +35,14 @@ const Product = {
 			},
 			body: JSON.stringify(params)
 		}).then((res) => res.json());
-	}
+  },
+   // deleting a product
+   delete(id) {
+    return fetch(`${BASE_URL}/products/${id}`, {
+      method: 'DELETE',
+      credentials: 'include'
+    }).then(res => res.json());
+  }
 };
 
 // Helper module to sign users in

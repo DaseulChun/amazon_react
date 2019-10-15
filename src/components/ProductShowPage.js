@@ -43,14 +43,28 @@ class ProductShowPage extends Component {
       }
     })
   }
+  deleteProduct() {
+    Product.delete(this.state.product.id).then(data => {
+      this.props.history.push("/products");
+    });
+  }
   render() {
     if (!this.state.product) {
       return <Spinner />;
     }
+    const { id: currentUser } = this.props.currentUser;
+    // const currentUser = this.props.currentUser.id ?
+    const { id: seller } = this.state.product.seller;
     return (
       <div>
         <h1>Product Show Page</h1>
         <ProductDetails {...this.state.product} /> <br />
+        {currentUser === seller && (
+          <button className="ui right floated red button" onClick={() => this.deleteProduct()}>
+            Delete
+          </button>
+        )}
+
         <ReviewList onReviewDelete={this.deleteReview} reviews={this.state.product.reviews} />
         {/* {console.log(this.state.product)} */}
       </div>

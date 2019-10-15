@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 // import products from '../data/products';
-import ProductForm from "./ProductForm";
+// import ProductForm from "./ProductForm";
 import Spinner from "./Spinner";
 import { Product } from '../requests';
 
@@ -12,7 +12,7 @@ class ProductIndex extends Component {
       products: [],
       isLoading: true
     }
-    this.createProduct = this.createProduct.bind(this);
+    // this.createProduct = this.createProduct.bind(this);
   }
   componentDidMount() {
     Product.all().then(products => {
@@ -22,27 +22,27 @@ class ProductIndex extends Component {
       });
     });
   }
-  createProduct(params) {
-    // Product.create(params).then(product => {
-    //   Product.one(product.id).then(product => {
-    //     this.setState(state => {
-    //       return {
-    //         products: [
-    //           {
-    //             ...product,
-    //             ...state.products
-    //           }
-    //         ]
-    //       }
-    //     })
-    //   })
-    // })
-    console.log('this.props before histroy>>>', this.props)
-    // debugger;
-    Product.create(params).then(product => {
-      this.props.history.push(`/products/${product.id}`);
-    });
-  }
+  // createProduct(params) {
+  //   // Product.create(params).then(product => {
+  //   //   Product.one(product.id).then(product => {
+  //   //     this.setState(state => {
+  //   //       return {
+  //   //         products: [
+  //   //           {
+  //   //             ...product,
+  //   //             ...state.products
+  //   //           }
+  //   //         ]
+  //   //       }
+  //   //     })
+  //   //   })
+  //   // })
+  //   console.log('this.props before histroy>>>', this.props)
+  //   // debugger;
+  //   Product.create(params).then(product => {
+  //     this.props.history.push(`/products/${product.id}`);
+  //   });
+  // }
   deleteProduct(id) {
     this.setState((state, props) => {
       return {
@@ -57,7 +57,7 @@ class ProductIndex extends Component {
     return (
       <main className="ProductIndex">
         <h1>Products Index</h1>
-        <ProductForm onCreateProduct={this.createProduct} />
+        {/* <ProductForm onCreateProduct={this.createProduct} /> */}
         <ul>
           {this.state.products.map((product, index) => (
             <li key={index}>

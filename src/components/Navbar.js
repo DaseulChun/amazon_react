@@ -21,9 +21,9 @@ function Navbar(props) {
     >
       {/* <a href="/questions">Questions</a> */}
       <NavLink to="/products">Products</NavLink>
+      <NavLink to="/products/new">Register a Product</NavLink>
       {currentUser ? (
         <>
-          <NavLink to="/products/new">Register a Product</NavLink>
           <span>Welcome {currentUser.full_name}</span>
           <a href='#sign_out' onClick={handleSignOutClick}>
             Sign Out

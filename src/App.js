@@ -2,11 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductShowPage from './components/ProductShowPage';
 import ProductIndex from './components/ProductIndex';
+import ProductNewPage from './components/ProductNewPage';
 import Navbar from "./components/Navbar";
 import { Session, User } from "./requests";
 import './App.css';
 import SignInPage from './components/SignInPage';
 import Spinner from "./components/Spinner";
+import AuthRoute from "./components/AuthRoute";
+import { SignUpPage } from "./components/SignUpPage";
 
 class App extends React.Component {
   constructor(props) {
@@ -49,6 +52,7 @@ class App extends React.Component {
   }
   render(){
     const { loading, currentUser } = this.state;
+  
     if (loading) {
       return <Spinner />;
     }
@@ -59,11 +63,29 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact component={ProductIndex} />
             <Route path="/products" exact component={ProductIndex} />
-            <Route path="/products/:id" exact component={ProductShowPage} />
+            <AuthRoute 
+              isAuthenticated={currentUser}
+              path="/products/new" 
+              component={ProductNewPage} 
+            />
+            <Route 
+              path="/products/:id" 
+              render={routeProps => (
+                <ProductShowPage {...routeProps}
+                currentUser={this.state.currentUser} />
+              )}
+            />
             <Route 
               path="/sign_in" 
               render={routeProps => (
                 <SignInPage onSignIn={this.getUser} {...routeProps} />
+              )}
+            />
+            <Route
+              exact
+              path="/sign_up"
+              render={routeProps => (
+                <SignUpPage {...routeProps} onSignUp={this.getUser} />
               )}
             />
           </Switch>
